@@ -32,3 +32,27 @@ fig = go.Figure(data=[go.Surface(x=X, y=Y, z=Z)])
 fig.update_layout(title="3D Surface Plot")
 
 st.plotly_chart(fig)
+# ----- Contour Plot -----
+st.subheader("Contour Plot")
+
+fig2 = go.Figure(
+    data=go.Contour(
+        x=X[0],
+        y=Y[:, 0],
+        z=Z,
+        contours=dict(showlabels=True),
+        colorscale='Viridis'
+    )
+)
+
+# Gradient arrow
+fig2.add_annotation(
+    x=x0, y=y0,
+    ax=x0 + float(grad_x),
+    ay=y0 + float(grad_y),
+    arrowhead=3,
+    arrowwidth=2,
+    arrowcolor="red"
+)
+
+st.plotly_chart(fig2)
